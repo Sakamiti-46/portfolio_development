@@ -9,7 +9,8 @@ class RecordsController < ApplicationController
   end
 
   def show
-    @record = Record.find(params[:id])
+    @record = Record.find_by(params[:id])
+    # @output = @record.outputs.all
   end
 
   def new
@@ -21,13 +22,10 @@ class RecordsController < ApplicationController
 
   def create
     @record = Record.new(record_params)
-    output = @record.outputs.build
-    practice = @record.practices.build
-    task = @record.tasks.build
-
     logger.info "###### #{@record.inspect}"
     if @record.save
-      redirect_to records_url, notice: "練習内容の登録が完了しました。"
+      flash[:success] = "練習内容の登録が完了しました。"
+      redirect_to records_url
     else
       flash[:alert] = "登録に失敗しました。"
       render :new
@@ -44,7 +42,6 @@ class RecordsController < ApplicationController
     redirect_to root_to_path, notice: "練習記録を削除しました。"
   end
 
-
   private
 
   def set_user
@@ -52,7 +49,7 @@ class RecordsController < ApplicationController
   end
 
   def record_params
-    params.require(:record).permit(:training_date, :learning_point)
+    params.require(:record).permit(:training_date, :learning_point, outputs_attributes:[:output_name], practices_attributes:[:practice_item, :practice_time], tasks_attributes:[:task_name])
   end
 
 end
