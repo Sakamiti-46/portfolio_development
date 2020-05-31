@@ -1,0 +1,42 @@
+h1 登録内容一覧
+= form_with model:@record, url: records_path, method: :post, local:true do |f|
+  = f.date_select :training_date
+    h3 練習日
+  .container
+    .col-sm-6
+      .form-group
+        #datetimepicker4.input-group.date[data-target-input="nearest"]
+          input.form-control.datetimepicker-input[type="text" data-target="#datetimepicker4"]
+          .input-group-append[data-target="#datetimepicker4" data-toggle="datetimepicker"]
+            .input-group-text
+              i.fa.fa-calendar
+    script[type="text/javascript"]
+      |  $(function () { $('#datetimepicker4').datetimepicker({ format: 'L' }); });
+
+  = f.fields_for :outputs do | output |
+    h3 今日できるようになったこと・成果
+    .form-group
+    = f.text_field :output_name, class: 'form-control', id: 'output_name'
+    = f.text_field :output_name, class: 'form-control', id: 'output_name'
+    = f.text_field :output_name, class: 'form-control', id: 'output_name'
+
+  .d-flex.text-item: center
+  = f.fields_for :practice
+    h3 今日の練習内容
+    = f.select :practice_item, class: 'form-control'
+      option  3球目攻撃
+      option  フォア2本、バック2本
+    h3 を
+    = f.number_field :practice_time
+    h3 分
+
+  = f.fields_for :record
+    h3 今日の気付き
+    = f.text_area :learning_point
+
+  = f.fields_for :task
+    h3 次回練習すること・課題
+    = f.text_field :task_name
+
+  = f.submit 'この内容で登録する', class: 'btn btn-primary'
+  = link_to '一覧に戻る', root_path, class: 'btn btn-primary'
