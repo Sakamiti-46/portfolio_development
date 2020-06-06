@@ -9,21 +9,8 @@
     <%= javascript_include_tag 'application' %>
   </head>
   <body>
-    <header>
-      <nav>
-      <!-- user_signed_in? はユーザがログインしているか調べるdeviseのHelperメソッド -->
-        <% if user_signed_in? %>
-          <strong><%= current_user.email %></strong>でログイン中
-          <%= link_to 'プロフィール変更', edit_user_registration_path %> |
-          <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-        <% else %>
-          <%= link_to "登録", new_user_registration_path %> |
-          <%= link_to "ログイン", new_user_session_path %>
-        <% end %>
-      </nav>
-    </header>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+    <%= render 'records/header' %>
   <%= yield %>
 </body>
 </html>
+

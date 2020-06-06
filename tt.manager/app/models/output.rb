@@ -1,4 +1,5 @@
 class Output < ApplicationRecord
-  #belongs_to :user
+  validates :output_name, presence: true
   belongs_to :record
+  # has_many :users, through: :records
 end

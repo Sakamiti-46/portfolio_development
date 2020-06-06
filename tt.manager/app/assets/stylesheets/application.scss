@@ -1,3 +1,17 @@
 @import "bootstrap";
-@import "font-awesome";
-@import "tempusdominus-bootstrap-4.css";
+
+.container-login {
+  @extend .container-fluid;
+  max-width: 576px;
+  padding: 2rem;
+}
+
+// 「ログインしました」などのフラッシュ用スタイル
+
+.alert-notice {
+  @extend .alert-info;
+}
+
+.alert-alert {
+  @extend .alert-danger;
+}

@@ -1,5 +1,5 @@
-h1 登録内容一覧
-= form_with model:@record, url: records_path, method: :post, local:true do |f|
+h1 練習記録の詳細
+= form_with model:@record, url: record_path(@record.id), local:true do |f|
   h3 練習日
   = f.date_field :training_date
 
@@ -27,5 +27,6 @@ h1 登録内容一覧
     h3 次回練習すること・課題
     = task_fields.text_field :task_name
 
-  = f.submit 'この内容を編集する', class: 'btn btn-primary'
-  = link_to '一覧に戻る', root_path, class: 'btn btn-primary'
+  = link_to '編集', edit_record_path(@record), class: 'btn btn-primary mr-3'
+  = link_to '一覧に戻る', root_path, class: 'btn btn-secondary'
+  = link_to '削除する', record_path(@record), method: :delete, data: { confirm: "練習記録を削除します。よろしいですか？" }, class: 'btn btn-danger'

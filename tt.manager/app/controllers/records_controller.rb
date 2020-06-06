@@ -1,15 +1,17 @@
 class RecordsController < ApplicationController
-  before_action :set_user
+before_action :authenticate_user!
 
   def index
-    @records = Record.all.order(created_at: 'desc')
+    @records = current_user.records.includes(:practices)
+    # @practices = Practice.order(:practice_time)
     # @q = Record.ransack(params[:q])
     # @records = @q.result(distinct: true)
     # ransackで検索機能実装予定
   end
 
   def show
-    @record = Record.find_by(params[:id])
+    # @record = current_user.records.find(params[:id])
+    @record = Record.find(params[:id])
     # @output = @record.outputs.all
   end
 
@@ -33,13 +35,28 @@ class RecordsController < ApplicationController
   end
 
   def edit
-    @records = Record.all
+    @record = Record.find_by(id: params[:id])
   end
 
+  def update
+    @record = Record.find_by(id: params[:id])
+    # @record = Record.find(params[:id])
+    if @record.update(record_params)
+        flash[:success] = "練習内容の更新が完了しました。"
+        redirect_to records_url
+      else
+        flash[:alert] = "更新に失敗しました。"
+        render :edit
+      end
+  end
+
+
   def destroy
-    record = Record.find(params[:id])
+    record = Record.find_by(id:params[:id])
     record.destroy
-    redirect_to root_to_path, notice: "練習記録を削除しました。"
+    # record = Record.find(params[:id])
+    # record.destroy
+    redirect_to root_path, notice: "練習記録を削除しました。"
   end
 
   private
@@ -49,7 +66,7 @@ class RecordsController < ApplicationController
   end
 
   def record_params
-    params.require(:record).permit(:training_date, :learning_point, outputs_attributes:[:output_name], practices_attributes:[:practice_item, :practice_time], tasks_attributes:[:task_name])
+    params.require(:record).permit(:record_id, :training_date, :learning_point, outputs_attributes:[:output_name], practices_attributes:[:practice_item, :practice_time], tasks_attributes:[:task_name]).merge(user_id: current_user.id)
   end
 
 end

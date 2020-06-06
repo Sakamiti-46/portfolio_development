@@ -9,15 +9,15 @@
 //
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
-//
-//= require activestorage
 
-//= require moment
-//= require moment/ja.js
 //= require jquery3
-//= require jquery
-//= require tempusdominus-bootstrap-4.js
 //= require popper
 //= require bootstrap-sprockets
-
-//= require_tree
+//= require activestorage
+//= require turbolinks
+//= require moment
+//= require moment/ja.js
+//= require jquery
+//= require rails-ujs
+//= require turbolinks
+//= require_tree .

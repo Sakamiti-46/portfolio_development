@@ -1,4 +1,5 @@
 class Task < ApplicationRecord
-  #belongs_to :users
+  validates :task_name, presence: true
   belongs_to :record
+  # has_many :users, through: :records
 end
