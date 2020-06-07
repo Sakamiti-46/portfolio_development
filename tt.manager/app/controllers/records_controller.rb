@@ -58,7 +58,7 @@ before_action :authenticate_user!
     redirect_to root_path, notice: "練習記録を削除しました。"
   end
 
-  def aggregation_result
+  def aggregate_result
     @record = Record.find(params[:id])
   end
 
