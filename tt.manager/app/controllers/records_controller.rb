@@ -50,13 +50,16 @@ before_action :authenticate_user!
       end
   end
 
-
   def destroy
     record = Record.find_by(id:params[:id])
     record.destroy
     # record = Record.find(params[:id])
     # record.destroy
     redirect_to root_path, notice: "練習記録を削除しました。"
+  end
+
+  def aggregation_result
+    @record = Record.find(params[:id])
   end
 
   private
