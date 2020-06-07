@@ -18,6 +18,7 @@
 //= require moment
 //= require moment/ja.js
 //= require jquery
+//= require Chart.min
 //= require rails-ujs
 //= require turbolinks
 //= require_tree .

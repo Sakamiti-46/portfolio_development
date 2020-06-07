@@ -1,2 +1,27 @@
+= render 'records/flash_messages'
 h1 レポート
-p 練習項目の内訳
+canvas#myPieChart
+script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"
+javascript:
+  var ctx = document.getElementById("myPieChart");
+  var myPieChart = new Chart(ctx, {
+    type: 'pie',
+    data: {
+      labels: ["サーブ練習", "３球目攻撃", "フットワーク練習", "多球練習"],
+      datasets: [{
+          backgroundColor: [
+              'rgba(255, 99, 132, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(255, 206, 86, 0.2)',
+              'rgba(75, 192, 192, 0.2)'
+          ],
+          data: [38, 31, 21, 10]
+      }]
+    },
+    options: {
+      title: {
+        display: true,
+        text: '練習内容の内訳'
+      }
+    }
+  });
