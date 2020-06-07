@@ -60,6 +60,7 @@ before_action :authenticate_user!
 
   def aggregate_result
     @record = Record.find(params[:id])
+    
   end
 
   private
