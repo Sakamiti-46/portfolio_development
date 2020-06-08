@@ -27,6 +27,7 @@ before_action :authenticate_user!
     logger.info "###### #{@record.inspect}"
     if @record.save
       flash[:success] = "練習内容の登録が完了しました。"
+      binding.pry
       redirect_to records_url
     else
       flash[:alert] = "登録に失敗しました。"
@@ -36,13 +37,14 @@ before_action :authenticate_user!
 
   def edit
     @record = Record.find_by(id: params[:id])
+    binding.pry
   end
 
   def update
     @record = Record.find_by(id: params[:id])
-    # @record = Record.find(params[:id])
     if @record.update(record_params)
         flash[:success] = "練習内容の更新が完了しました。"
+        binding.pry
         redirect_to records_url
       else
         flash[:alert] = "更新に失敗しました。"
