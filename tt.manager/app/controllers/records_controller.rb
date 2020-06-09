@@ -27,7 +27,6 @@ before_action :authenticate_user!
     logger.info "###### #{@record.inspect}"
     if @record.save
       flash[:success] = "練習内容の登録が完了しました。"
-      binding.pry
       redirect_to records_url
     else
       flash[:alert] = "登録に失敗しました。"
@@ -37,14 +36,12 @@ before_action :authenticate_user!
 
   def edit
     @record = Record.find_by(id: params[:id])
-    binding.pry
   end
 
   def update
     @record = Record.find_by(id: params[:id])
     if @record.update(record_params)
         flash[:success] = "練習内容の更新が完了しました。"
-        binding.pry
         redirect_to records_url
       else
         flash[:alert] = "更新に失敗しました。"
@@ -72,7 +69,7 @@ before_action :authenticate_user!
   end
 
   def record_params
-    params.require(:record).permit(:record_id, :training_date, :learning_point, outputs_attributes:[:output_name], practices_attributes:[:practice_item, :practice_time], tasks_attributes:[:task_name]).merge(user_id: current_user.id)
+    params.require(:record).permit(:record_id, :training_date, :learning_point, outputs_attributes:[:output_name, :id], practices_attributes:[:practice_item, :practice_time, :id], tasks_attributes:[:task_name, :id]).merge(user_id: current_user.id)
   end
 
 end
