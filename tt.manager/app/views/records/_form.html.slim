@@ -1,0 +1,71 @@
+= form_for @record, url: records_path, method: :post, local:true do |f|
+
+  h3 練習日
+  #record
+    = f.date_field :training_date
+
+  .form-group
+    h3 今日できるようになったこと・成果
+    #outputs
+      = f.fields_for :outputs do |output|
+        = render 'output_fields', f: output
+      #links
+        = link_to_add_association '追加',f, :outputs, class: 'btn btn-primary'
+
+  .d-flex.text-item: center
+  = f.fields_for :practices do |practice_fields|
+    h3 今日の練習内容
+    = practice_fields.select :practice_item, class: 'form-control'
+      option  3球目攻撃
+      option  フォア2本、バック2本
+    h3 を
+    = practice_fields.number_field :practice_time
+    h3 分
+
+    h3 今日の練習内容
+    table
+      thead
+        tr
+          th 練習項目
+          th 練習時間（分）
+      tbody
+        tr
+          td= practice_fields.select :practice_item
+            option サーブ練習
+            option フットワーク練習
+            option ３球目攻撃
+            option オール練習
+          td= practice_fields.number_field :practice_time
+
+    h3 今日の気付き
+  = f.text_area :learning_point
+
+  .form-group
+    h3 次回練習すること・課題
+    #tasks
+      = f.fields_for :tasks do |task|
+        = render 'task_fields', f: task
+      #links
+        = link_to_add_association '追加',f, :tasks, class: 'btn btn-primary'
+
+  = f.submit 'この内容で登録する', class: 'btn btn-primary'
+
+  / $(function() {
+  /   $('#records').on('cocoon:after-insert', function() {
+  /       check_to_hide_or_show_add_link();
+  /   });
+
+  /   $('#records').on('cocoon:after-remove', function() {
+  /     check_to_hide_or_show_add_link();
+  /   });
+
+  /   check_to_hide_or_show_add_link();
+
+  /   function check_to_hide_or_show_add_link() {
+  /     if ($('#records .nested-fields').length == 3) {
+  /       $('#add-category a').hide();
+  /     } else {
+  /       $('#add-category a').show();
+  /     }
+  /   }
+  / })

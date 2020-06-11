@@ -1,0 +1,7 @@
+.nested-fields
+  .form-group
+    / = f.label :"項目"
+    = f.text_field :task_name
+    #links
+      / = link_to_add_association '追加',f, :outputs, class: 'btn btn-primary'
+      = link_to_remove_association "削除", f, class: 'btn  btn-danger'
