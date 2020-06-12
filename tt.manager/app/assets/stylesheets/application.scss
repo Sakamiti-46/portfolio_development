@@ -1,4 +1,5 @@
 @import "bootstrap";
+// @import "records.scss";
 
 .container-login {
   @extend .container-fluid;
@@ -14,4 +15,21 @@
 
 .alert-alert {
   @extend .alert-danger;
+}
+
+.form-group.form-group-flex {
+  display: flex;
+}
+
+.form-height select,.form-height input {
+  height: 29px;
+  padding: 1px;
+  box-sizing: border-box;
+  border-width: 2px;
+  border-style: inset;
+  border-color: -internal-light-dark-color(rgb(118, 118, 118), rgb(195, 195, 195));
+  border-image: initial;
+}
+.form-height input {
+  width: 70px;
 }

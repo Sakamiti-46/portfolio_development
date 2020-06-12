@@ -33,6 +33,10 @@ table.table-hover.table-respnsive
             = link_to '編集する', edit_record_path(record), class: 'btn btn-primary mr-3'
             = link_to '削除する', record_path(record), method: :delete, data: { confirm: "練習記録を削除します。よろしいですか？" }, class: 'btn btn-danger'
 
+= paginate @records
+/ = link_to_next_page @records, 'Next Page'
+/ = path_to_next_page @records
+/ = path_to_prev_page @records
 
 / p 検索 #検索機能実装のコード。しかしエラーになる。
 / = form_tag(search_path,:method => 'get') do

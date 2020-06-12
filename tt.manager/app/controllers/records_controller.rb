@@ -2,11 +2,12 @@ class RecordsController < ApplicationController
 before_action :authenticate_user!
 
   def index
-    @records = current_user.records.includes(:practices)
+    @records = current_user.records.includes(:practices).page(params[:page]).per(8)
     # @practices = Practice.order(:practice_time)
     # @q = Record.ransack(params[:q])
     # @records = @q.result(distinct: true)
     # ransackで検索機能実装予定
+    # .order(:id)
   end
 
   def show
@@ -59,8 +60,12 @@ before_action :authenticate_user!
 
   def aggregate_result
     @record = Record.find(params[:id])
-    
+
   end
+
+   def amount_of_practice_time
+    @record = Record.select
+   end
 
   private
 

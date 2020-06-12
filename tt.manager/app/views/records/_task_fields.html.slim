@@ -1,6 +1,5 @@
 .nested-fields
-  .form-group
-    / = f.label :"項目"
+  .form-group.form-group-flex
     = f.text_field :task_name
     #links
       / = link_to_add_association '追加',f, :outputs, class: 'btn btn-primary'

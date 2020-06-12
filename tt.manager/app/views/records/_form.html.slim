@@ -1,4 +1,4 @@
-= form_for @record, url: records_path, method: :post, local:true do |f|
+= form_for @record, local:true do |f|
 
   h3 練習日
   #record
@@ -8,19 +8,27 @@
     h3 今日できるようになったこと・成果
     #outputs
       = f.fields_for :outputs do |output|
-        = render 'output_fields', f: output
-      #links
-        = link_to_add_association '追加',f, :outputs, class: 'btn btn-primary'
+        .nested-fields
+          .form-group
+            = output.text_area :output_name
+            / #links
+            = link_to_remove_association "削除",f, class: 'btn  btn-danger'
+      = link_to_add_association '追加',f, :outputs, class: 'btn btn-primary'
+            / = render 'output_fields', f: output
+
 
   .d-flex.text-item: center
   = f.fields_for :practices do |practice_fields|
-    h3 今日の練習内容
-    = practice_fields.select :practice_item, class: 'form-control'
-      option  3球目攻撃
-      option  フォア2本、バック2本
-    h3 を
-    = practice_fields.number_field :practice_time
-    h3 分
+    / h3 今日の練習内容
+    / = practice_fields.select :practice_item, class: 'form-control'
+    /   option  サーブ練習
+    /   option  フットワーク
+    /   option  3球目攻撃
+    /   option  オール練習
+
+    / h3 を
+    / = practice_fields.number_field :practice_time
+    / h3 分
 
     h3 今日の練習内容
     table
@@ -29,7 +37,7 @@
           th 練習項目
           th 練習時間（分）
       tbody
-        tr
+        tr.form-control-md.form-height
           td= practice_fields.select :practice_item
             option サーブ練習
             option フットワーク練習
@@ -48,7 +56,14 @@
       #links
         = link_to_add_association '追加',f, :tasks, class: 'btn btn-primary'
 
-  = f.submit 'この内容で登録する', class: 'btn btn-primary'
+  - if controller.action_name == "new"
+    = f.submit "この内容で登録する",class: "btn btn-primary"
+  - elsif controller.action_name == "edit"
+    = f.submit "この内容で更新する",class: "btn btn-primary"
+  - else
+    = link_to "編集する" ,edit_record_path(@record), class: 'btn btn-primary mr-3'
+
+  / = f.submit 'この内容で登録する', class: 'btn btn-primary'
 
   / $(function() {
   /   $('#records').on('cocoon:after-insert', function() {
