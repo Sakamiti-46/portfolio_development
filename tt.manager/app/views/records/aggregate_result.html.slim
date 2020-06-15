@@ -17,7 +17,7 @@ javascript:
               'rgba(75, 192, 192, 0.2)',
               'rgba(242,68,172,0.2)'
           ],
-          data: [25, 25, 20, 10,5,5]
+          data: gon.data
       }]
     },
     options: {
@@ -27,6 +27,9 @@ javascript:
       }
     }
   });
+
+= link_to '一覧に戻る', root_path, class: 'btn btn-primary'
+
 / javascript:
 /   var ctx = document.getElementById("myPieChart");
 /   var myPieChart = new Chart(ctx, {

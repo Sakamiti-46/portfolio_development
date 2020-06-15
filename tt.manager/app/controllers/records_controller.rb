@@ -60,12 +60,12 @@ before_action :authenticate_user!
 
   def aggregate_result
     @record = Record.find(params[:id])
-
+    # @records = current_user.records.includes(:practices)
+    gon.data = Record.where(params[:practice_time])
+    # 6.times do
+    #   gon.data << rand(100.0)
+    # end
   end
-
-   def amount_of_practice_time
-    @record = Record.select
-   end
 
   private
 
@@ -76,5 +76,4 @@ before_action :authenticate_user!
   def record_params
     params.require(:record).permit(:record_id, :training_date, :learning_point, outputs_attributes:[:output_name, :id], practices_attributes:[:practice_item, :practice_time, :id], tasks_attributes:[:task_name, :id]).merge(user_id: current_user.id)
   end
-
 end
