@@ -9,11 +9,11 @@
     #outputs
       = f.fields_for :outputs do |output|
         .nested-fields
-          .form-group
+          .form-group.form-group-flex
             = output.text_area :output_name
-            / #links
-            = link_to_remove_association "削除",f, class: 'btn  btn-danger'
-      = link_to_add_association '追加',f, :outputs, class: 'btn btn-primary'
+            #links
+              = link_to_remove_association "削除",f, class: 'btn  btn-danger'
+        = link_to_add_association '追加',f, :outputs, class: 'btn btn-primary'
 
   .d-flex.text-item: center
   = f.fields_for :practices do |practice_fields|
@@ -28,9 +28,11 @@
         tr.form-control-md.form-height
           td= practice_fields.select :practice_item
             option サーブ練習
-            option フットワーク練習
+            option フットワーク
             option ３球目攻撃
-            option オール練習
+            option 台上処理
+            option 多球練習
+            option オール
           td= practice_fields.number_field :practice_time
 
     h3 今日の気付き

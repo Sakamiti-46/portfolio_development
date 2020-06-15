@@ -14,7 +14,6 @@
 //= require popper
 //= require bootstrap-sprockets
 //= require activestorage
-//= require turbolinks
 //= require moment
 //= require moment/ja.js
 //= require jquery
