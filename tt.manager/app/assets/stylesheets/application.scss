@@ -1,11 +1,15 @@
 @import "bootstrap";
-// @import "records.scss";
+
+body {
+  background-color: #fae9fa6b;
+}
 
 .container-login {
   @extend .container-fluid;
   max-width: 576px;
   padding: 2rem;
 }
+
 
 // 「ログインしました」などのフラッシュ用スタイル
 
@@ -33,3 +37,4 @@
 .form-height input {
   width: 70px;
 }
+

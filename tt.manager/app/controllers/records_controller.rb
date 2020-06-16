@@ -3,11 +3,13 @@ before_action :authenticate_user!
 
   def index
     @records = current_user.records.includes(:practices).page(params[:page]).per(8)
-    # @practices = Practice.order(:practice_time)
-    # @q = Record.ransack(params[:q])
-    # @records = @q.result(distinct: true)
-    # ransackで検索機能実装予定
-    # .order(:id)
+    # total_practice_time = Record.includes(:practices)
+    #   total_practice_time.each do |total|
+    #     total.sum(:practice_time)
+    #   end
+    # end
+    @q = Record.ransack(params[:q])
+    @search_records = @q.result(distinct: true)
   end
 
   def show
@@ -60,11 +62,10 @@ before_action :authenticate_user!
 
   def aggregate_result
     @record = Record.find(params[:id])
-    # @records = current_user.records.includes(:practices)
     gon.data = Record.where(params[:practice_time])
-    # 6.times do
-    #   gon.data << rand(100.0)
-    # end
+    6.times do
+      # gon.data << rand(100.0)
+    end
   end
 
   private
