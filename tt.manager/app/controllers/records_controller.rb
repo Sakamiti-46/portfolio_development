@@ -3,19 +3,16 @@ before_action :authenticate_user!
 
   def index
     @records = current_user.records.includes(:practices).page(params[:page]).per(8)
-    # total_practice_time = Record.includes(:practices)
-    #   total_practice_time.each do |total|
-    #     total.sum(:practice_time)
-    #   end
-    # end
+    total_practice_time = Record.includes(:practices)
+      total_practice_time.each do |total|
+        total.sum(:practice_time)
+      end
     @q = Record.ransack(params[:q])
     @search_records = @q.result(distinct: true)
   end
 
   def show
-    # @record = current_user.records.find(params[:id])
     @record = Record.find(params[:id])
-    # @output = @record.outputs.all
   end
 
   def new
@@ -55,8 +52,7 @@ before_action :authenticate_user!
   def destroy
     record = Record.find_by(id:params[:id])
     record.destroy
-    # record = Record.find(params[:id])
-    # record.destroy
+
     redirect_to root_path, notice: "練習記録を削除しました。"
   end
 
