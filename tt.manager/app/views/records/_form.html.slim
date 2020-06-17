@@ -4,7 +4,6 @@
   #record
     = f.date_field :training_date
 
-  .form-group
     h3 今日できるようになったこと・成果
     #outputs
       = f.fields_for :outputs do |output|
@@ -12,25 +11,29 @@
         #links
         = link_to_add_association '追加',f, :outputs, class: 'btn btn-primary'
 
-  .d-flex.text-item: center
-  = f.fields_for :practices do |practice_fields|
-
     h3 今日の練習内容
-    table
-      thead
-        tr
-          th 練習項目
-          th 練習時間（分）
-      tbody
-        tr.form-control-md.form-height
-          td= practice_fields.select :practice_item
-            option サーブ練習
-            option フットワーク
-            option ３球目攻撃
-            option 台上処理
-            option 多球練習
-            option オール
-          td= practice_fields.number_field :practice_time
+    #practices
+      = f.fields_for :practices do |practice_fields|
+        = render 'practice_fields', f: practice_fields
+        #links
+        = link_to_add_association '追加',f, :practices, class: 'btn btn-primary'
+
+    / h3 今日の練習内容
+    / table
+    /   thead
+    /     tr
+    /       th 練習項目
+    /       th 練習時間（分）
+    /   tbody
+    /     tr.form-control-md.form-height
+    /       td= practice_fields.select :practice_item
+    /         option サーブ練習
+    /         option フットワーク
+    /         option ３球目攻撃
+    /         option 台上処理
+    /         option 多球練習
+    /         option オール
+    /       td= practice_fields.number_field :practice_time
 
     h3 今日の気付き
   = f.text_area :learning_point
