@@ -1,16 +1,33 @@
-body style='padding-top:40px;'
-  header
-    nav.navbar.navbar-expand.navbar-light
-      = link_to "TTManager", root_path, class: 'navbar-brand'
-      #Navbar
-        ul.navbar-nav
-          - if user_signed_in?
-            li.nav-item.active
-              = link_to 'アカウント編集', edit_user_registration_path, class: 'nav-link'
-            li.nav-item.active
-              = link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'nav-link'
-          - else
-            li.nav-item.active
-              = link_to "新規登録", new_user_registration_path, class: 'nav-link'
-            li.nav-item.active
-              = link_to "ログイン", new_user_session_path, class: 'nav-link'
+nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.sticky-top
+  = link_to "TTManager", root_path, class: 'navbar-brand'
+  button.navbar-toggler aria-controls="navbarSupportedContent" aria-expanded="false" aria-label=("Toggle navigation") data-target="#navbarSupportedContent" data-toggle="collapse" type="button"
+    span.navbar-toggler-icon
+  #navbarSupportedContent.collapse.navbar-collapse
+    ul.navbar-nav.mr-auto
+      - if user_signed_in?
+        li.nav-item
+          = link_to 'アカウント編集', edit_user_registration_path, class: 'nav-link'
+        li.nav-item
+          = link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'nav-link'
+      - else
+        li.nav-item
+          = link_to '新規登録', new_user_registration_path
+        li.nav-item
+          = link_to "ログイン", new_user_session_path
+
+/ body
+/   header
+/     nav.navbar.navbar-expand.navbar-light
+/       = link_to "TTManager", root_path, class: 'navbar-brand'
+/       #Navbar
+/         ul.navbar-nav
+/           - if user_signed_in?
+/             li.nav-item.active
+/               = link_to 'アカウント編集', edit_user_registration_path, class: 'nav-link'
+/             li.nav-item.active
+/               = link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'nav-link'
+/           - else
+/             li.nav-item.active
+/               = link_to "新規登録", new_user_registration_path, class: 'nav-link'
+/             li.nav-item.active
+/               = link_to "ログイン", new_user_session_path, class: 'nav-link'
