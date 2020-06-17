@@ -3,10 +3,10 @@ before_action :authenticate_user!
 
   def index
     @records = current_user.records.includes(:practices).page(params[:page]).per(8)
-    total_practice_time = Record.includes(:practices)
-      total_practice_time.each do |total|
-        total.sum(:practice_time)
-      end
+    # total_practice_time = Record.includes(:practices)
+    #   total_practice_time.each do |total|
+    #     total.sum(:practice_time)
+    #   end
     @q = Record.ransack(params[:q])
     @search_records = @q.result(distinct: true)
   end
@@ -71,6 +71,6 @@ before_action :authenticate_user!
   end
 
   def record_params
-    params.require(:record).permit(:record_id, :training_date, :learning_point, outputs_attributes:[:output_name, :id], practices_attributes:[:practice_item, :practice_time, :id], tasks_attributes:[:task_name, :id]).merge(user_id: current_user.id)
+    params.require(:record).permit(:record_id, :training_date, :learning_point, outputs_attributes:[:output_name, :id, :_destroy], practices_attributes:[:practice_item, :practice_time, :id, :_destroy], tasks_attributes:[:task_name, :id, :_destroy]).merge(user_id: current_user.id)
   end
 end
