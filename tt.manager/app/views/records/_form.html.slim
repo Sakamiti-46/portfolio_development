@@ -8,11 +8,8 @@
     h3 今日できるようになったこと・成果
     #outputs
       = f.fields_for :outputs do |output|
-        .nested-fields
-          .form-group.form-group-flex
-            = output.text_area :output_name
-            #links
-              = link_to_remove_association "削除",f, class: 'btn  btn-danger'
+        = render 'output_fields', f: output
+        #links
         = link_to_add_association '追加',f, :outputs, class: 'btn btn-primary'
 
   .d-flex.text-item: center

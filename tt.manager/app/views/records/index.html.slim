@@ -39,7 +39,7 @@ table.table-hover.table-respnsive
         tr
           td= link_to record.training_date, record_path(record)
           td= record.created_at
-          td
+          td= record.practices.sum(:practice_time)
           / td= total
           / td= practice.practice_time
           td
