@@ -2,13 +2,9 @@ class RecordsController < ApplicationController
 before_action :authenticate_user!
 
   def index
-    @records = current_user.records.includes(:practices).page(params[:page]).per(8)
-    # total_practice_time = Record.includes(:practices)
-    #   total_practice_time.each do |total|
-    #     total.sum(:practice_time)
-    #   end
+    # @records = current_user.records.includes(:practices).page(params[:page]).per(8)
     @q = Record.ransack(params[:q])
-    @search_records = @q.result(distinct: true)
+    @search_records = @q.result(distinct: true).includes(:practices).page(params[:page]).per(8)
   end
 
   def show

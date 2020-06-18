@@ -2,14 +2,10 @@
 
 h1 練習記録一覧
 .container
-  .row
-    .col-sm-6
-      .form-group
-        = search_form_for @q do |f|
-          = f.date_field :training_date_eq
-          = f.submit "検索"
-        / = form_with model: @record do |f|
-        /   = f.date_field :training_date
+  .form-group
+    = search_form_for @q do |f|
+      = f.date_field :training_date_eq
+      = f.submit "検索"
 
 .d-flex
   .col-4.text-align: center
@@ -22,14 +18,13 @@ h1 練習記録一覧
 table.table-hover.table-respnsive
   thead
     tr
-      th 練習日
-      th 登録日時
+      th= sort_link(@q, :training_date, '練習日')
+      th= sort_link(@q, :created_at, '登録日時')
       th 総練習時間
       th
       th
   tbody
-    - @records.each do |record|
-      - record.practices.each do |practice|
+    - @search_records.each do |record|
         tr
           td= link_to record.training_date, record_path(record)
           td= record.created_at
@@ -39,7 +34,7 @@ table.table-hover.table-respnsive
             = link_to '編集する', edit_record_path(record), class: 'btn btn-primary mr-3'
             = link_to '削除する', record_path(record), method: :delete, data: { confirm: "練習記録を削除します。よろしいですか？" }, class: 'btn btn-danger'
 
-= paginate @records
+= paginate @search_records
 / = link_to_next_page @records, 'Next Page'
 / = path_to_next_page @records
 / = path_to_prev_page @records
