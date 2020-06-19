@@ -1,4 +1,14 @@
 <%- if controller_name != 'sessions' %>
+  <%= link_to "ログイン", login_path %><br />
+<% end %>
+
+<%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+  <%= link_to "新規登録", signup_path %><br />
+<% end %>
+
+<%
+=begin%>
+ <%- if controller_name != 'sessions' %>
   <%= link_to "Log in", new_session_path(resource_name) %><br />
 <% end %>
 
@@ -22,4 +32,6 @@
   <%- resource_class.omniauth_providers.each do |provider| %>
     <%= link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider) %><br />
   <% end %>
-<% end %>
+<% end %> 
+<%
+=end%>
