@@ -11,32 +11,34 @@ h2
       | Currently waiting confirmation for: #{resource.unconfirmed_email}
   .field
     = f.label :password
-    i (leave blank if you don't want to change it)
-    br/
+    / i (leave blank if you don't want to change it)
+    br
     = f.password_field :password, autocomplete: "new-password"
     - if @minimum_password_length
-      br/
+      br
       em
         = @minimum_password_length
         | characters minimum
   .field
     = f.label :password_confirmation
-    br/
+    br
     = f.password_field :password_confirmation, autocomplete: "new-password"
   .field
     = f.label :current_password
-    i (we need your current password to confirm your changes)
-    br
+    / i (we need your current password to confirm your changes)
+    br/
     = f.password_field :current_password, autocomplete: "current-password"
   .actions
-    = f.submit "更新する"
+    = f.submit "Update"
 h3 Cancel my account
 p
   | Unhappy? #{button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete}
 = link_to "戻る", :back
 
 
-/ <h2>Edit <%= resource_name.to_s.humanize %></h2>
+/ <%
+/ =begin%>
+/  <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
 / <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
 /   <%= render "devise/shared/error_messages", resource: resource %>
@@ -78,4 +80,6 @@ p
 
 / <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
-/ <%= link_to "Back", :back %>
+/ <%= link_to "Back", :back %> 
+/ <%
+/ =end%>
