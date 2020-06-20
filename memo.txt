@@ -15,6 +15,9 @@ window.alert(`hello,${gon.user.name}!`);
 Ref.https://makolog.xyz/gem/
 
 
+フルスタックエンジニアを希望する理由を説明できるように
+
+
 
 
 to_a= to arry（配列）

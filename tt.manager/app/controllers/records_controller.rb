@@ -52,21 +52,45 @@ before_action :authenticate_user!
   end
 
   def aggregate_result
-    @record = current_user.records
+    # @record = current_user.records
 #@recordだが、中身がrecords（複数のレコードの集合）が入っている状態
-    gon.data = @record.practices.group(:practice_item).sum(:practice_time)
-    gon.data2 = @record.practices.where(practice_item: "サーブ練習")
-    logger.info "practices.group #{gon.data}"
-    logger.info "practices.group #{gon.data2}"
-    logger.info "practices.group #{gon.data.inspect}"
-    logger.info "practices.group #{gon.data2.inspect}"
-
-    logger.info "practice_time #{params[:practice_time]}"
-    logger.info "gon.data #{gon.data.inspect}"
-    6.times do
-      gon.data.to_a << rand(100.0)
-    end
+  @record = current_user.records.includes(:practices).select("practice_item", "practice_time").group("practice_item").sum(:practice_time)
+  logger.info "test #{@record}"
+  gon.data = @record
   end
+
+# hash = {
+#   "サーブ練習" => "service_practice",
+#   "フットワーク" => "footwork",
+#   "3球目攻撃" => "third_attack",
+#   "台上処理" => "receive_skill",
+#   "多球練習" => "multiball_practice",
+#   "オール" => "all_practice"
+# }
+# hash["サーブ練習"]
+# service_practice = @record.sum{:practice_item => "サーブ練習"}
+# footwork = @record.sum{:practice_item => "フットワーク"}
+# third_attack = @record.sum(:practice_item  "3球目攻撃"}
+# receive_skill = @record.sum(:practice_item => "台上処理"}
+# multiball_practice = @record.sum{:practice_item => "多球練習"}
+# all_practice = @record.sum{:practice_item => "オール"}
+
+# gon.data = ["サーブ練習" => "service_practice", "フットワーク" => "footwork", "3球目攻撃" => "third_attack", "台上処理" => "receive_skill", "多球練習" => "multiball_practice", "オール" => "all_practice"]
+
+# results = {"サーブ練習" => :service_practice}
+# results[@service_practice]
+
+
+# gon.data = [@serve,@footwork,@third_attack,@receive_on_the_table,@multiball_practice,@all_practice]
+
+    # logger.info "practices.group #{gon.data}"
+    # logger.info "practices.group #{gon.data2}"
+    # logger.info "practices.group #{gon.data.inspect}"
+    # logger.info "practices.group #{gon.data2.inspect}"
+    # logger.info "practice_time #{params[:practice_time]}"
+    # logger.info "gon.data #{gon.data.inspect}"
+    # 6.times do
+    #   gon.data3.to_a << rand(100.0)
     # .or(practice_item: "フットワーク").or(practice_item: "3球目攻撃")or(practice_item: "台上処理")or(practice_item: "多球練習")or(practice_item: "オール")
 
 
