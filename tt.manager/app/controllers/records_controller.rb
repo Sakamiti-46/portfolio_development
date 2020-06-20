@@ -2,8 +2,7 @@ class RecordsController < ApplicationController
 before_action :authenticate_user!
 
   def index
-    # @records = current_user.records.includes(:practices).page(params[:page]).per(8)
-    @q = Record.ransack(params[:q])
+    @q = current_user.records.ransack(params[:q])
     @search_records = @q.result(distinct: true).includes(:practices).page(params[:page]).per(8)
   end
 
@@ -53,12 +52,30 @@ before_action :authenticate_user!
   end
 
   def aggregate_result
-    @record = Record.find(params[:id])
-    gon.data = Record.where(params[:practice_time])
+    @record = current_user.records
+#@recordだが、中身がrecords（複数のレコードの集合）が入っている状態
+    gon.data = @record.practices.group(:practice_item).sum(:practice_time)
+    gon.data2 = @record.practices.where(practice_item: "サーブ練習")
+    logger.info "practices.group #{gon.data}"
+    logger.info "practices.group #{gon.data2}"
+    logger.info "practices.group #{gon.data.inspect}"
+    logger.info "practices.group #{gon.data2.inspect}"
+
+    logger.info "practice_time #{params[:practice_time]}"
+    logger.info "gon.data #{gon.data.inspect}"
     6.times do
-      # gon.data << rand(100.0)
+      gon.data.to_a << rand(100.0)
     end
   end
+    # .or(practice_item: "フットワーク").or(practice_item: "3球目攻撃")or(practice_item: "台上処理")or(practice_item: "多球練習")or(practice_item: "オール")
+
+
+  # gon.data = Record.where(params[:practice_time])
+  # paramsは、V
+
+  # Parameters: {"id"=>"3"}を取得するのが、params[:id]
+  # params
+
 
   private
 

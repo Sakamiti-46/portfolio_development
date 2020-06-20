@@ -1,3 +1,108 @@
+【メモ】
+gem gon
+Rubyで定義した変数をJSでも使えるようにするgem
+方法
+Controllerにて定義する
+例
+  def show
+  @user = User.find(params[:id])
+  gon.user = @user
+  end
+任意の変数名の先頭に”gon.”をつけるだけ。
+JSには、そのまま使ってよし。
+
+window.alert(`hello,${gon.user.name}!`);
+Ref.https://makolog.xyz/gem/
+
+
+
+
+to_a= to arry（配列）
+to_i= to integer（数字）
+to_s= to string（文字列）
+to_h= to hash（ハッシュ）
+
+gon.data（Active Record）を、XXに変換
+
+#<ActiveRecord::Associations::CollectionProxy [#<Practice id: 89, practice_item: "フットワーク", practice_time: 10, record_id: 63, created_at: "2020-06-15 10:10:21", updated_at: "2020-06-15 10:10:21">]>
+
+DBから検索してきた戻り値＝Avtive Recordオブジェクト
+DBから簡易的にデータを引っ張ってくる仕組み
+
+gon.data.to_a << rand(100.0)
+について、
+
+<<　メソッドは、新しい要素に「配列」を組み込む必要がある
+よって、to_aが必要だよと。
+（詳細はスクショの写真にて）
+
+
+イメージ
+
+
+
+  def aggregate_result
+    @record = current_user.records
+    gon.data = Record.where(params[:practice_time])
+    logger.info "practice_time #{params[:practice_time]}"
+    logger.info "gon.data #{gon.data.inspect}"
+    6.times do
+      gon.data.to_a << rand(100.0)
+    end
+  end
+
+TestModel.group(:user_id).sum(:score)
+
+groupメソッド
+特定のカラムに登録しているレコードに対し、特定の種類ごとに棲み分けする処理
+
+
+  def aggregate_result
+    @record = current_user.records
+    gon.data = @record.practices.group(:practice_time)
+    gon.data2 = @record.practices.where(practice_item: "サーブ練習").or(practice_item: "フットワーク").or(practice_item: "3球目攻撃")or(practice_item: "台上処理")or(practice_item: "多球練習")or(practice_item: "オール")
+    logger.info "practice_time #{params[:practice_time]}"
+    logger.info "gon.data #{gon.data.inspect}"
+    6.times do
+      gon.data.to_a << rand(100.0)
+    end
+  end
+
+#{}では、Rubyのコードを書く
+
+.inspect:
+
+  def aggregate_result
+    @record = current_user.records
+    gon.data = @record.practices.group(:practice_item)
+    gon.data2 = @record.practices.where(practice_item: "サーブ練習")
+    logger.info "practices.group #{gon.data}"
+    logger.info "practices.group #{gon.data2}"
+    logger.info "practices.group #{gon.data.inspect}"
+    logger.info "practices.group #{gon.data2.inspect}"
+
+
+★面接対策★
+Ruby、Railsなど開発言語、フレームワーク を使ったのか？
+
+なぜ、IT業界の中のエンジニアになりたいのか？が1番聞かれるし深堀りして考えないといけない
+
+【レッスンメモ】
+1.Chart.jsの実装
+2.Ajaxをどう実装させるか？
+3.Herokuへのデプロイ・本番環境と何か変わることがある？
+4.Bootstrapなどの見た目の修正
+
+SESの場合、運の要素あり。
+受託オンリー。中身選んで経験積むと割り切って入る。
+
+面接したところにはメール送る。
+IT業界で転職する人にはそういうことをしない人多め。
+
+公務員→民間（IT企業）→エンジニア
+受託オンリー（フロントエンドの会社、自社サービス（リリース前）＆受託メイン：Webアプリのフロント部分、Web制作、1本だけ、自社サービスはVue.js、受託はjQuery、Vue.jsが出たばかりかな、という時。）
+WB使って問題を解く。DB設計してという問題、エレベーターを創りたいが状態遷移図。
+
 
 
 
