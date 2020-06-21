@@ -52,11 +52,10 @@ before_action :authenticate_user!
   end
 
   def aggregate_result
-    # @record = current_user.records
 #@recordだが、中身がrecords（複数のレコードの集合）が入っている状態
-  @record = current_user.records.includes(:practices).select("practice_item", "practice_time").group("practice_item").sum(:practice_time)
+  @record = current_user.records.includes(:practices).select("practice_item", "practice_time").group("practice_item").sum(:practice_time).to_a
   logger.info "test #{@record}"
-  gon.data = @record
+  # gon.data = @record.to_a
   end
 
 # hash = {
