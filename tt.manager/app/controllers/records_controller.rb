@@ -55,7 +55,9 @@ before_action :authenticate_user!
 #@recordだが、中身がrecords（複数のレコードの集合）が入っている状態
   @record = current_user.records.includes(:practices).select("practice_item", "practice_time").group("practice_item").sum(:practice_time).to_a
   logger.info "test #{@record}"
-  # gon.data = @record.to_a
+  gon.data = @record
+  @label = ["サーブ練習", "フットワーク", "3球目攻撃", "台上処理","多球練習","オール"]
+  gon.label = @label
   end
 
 # hash = {

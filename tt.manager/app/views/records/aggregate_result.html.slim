@@ -7,7 +7,7 @@ javascript:
   var myPieChart = new Chart(ctx, {
     type: 'pie',
     data: {
-      labels: ["サーブ練習", "フットワーク", "3球目攻撃", "台上処理","多球練習","オール"],
+      labels: gon.label,
       datasets: [{
           backgroundColor: [
             'rgba(255, 99, 132, 0.2)',
@@ -17,7 +17,7 @@ javascript:
             'rgba(75, 192, 192, 0.2)',
             'rgba(242,68,172,0.2)'
           ],
-          data: [@record.values]
+          data: gon.data
       }]
     },
     options: {
@@ -29,6 +29,7 @@ javascript:
   });
 
 = link_to '一覧に戻る', root_path, class: 'btn btn-primary'
+
 
 /   var ctx = document.getElementById("myPieChart");
 /   var myPieChart = new Chart(ctx, {
