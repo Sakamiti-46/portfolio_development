@@ -2,8 +2,7 @@ class RecordsController < ApplicationController
 before_action :authenticate_user!
 
   def index
-    # @records = current_user.records.includes(:practices).page(params[:page]).per(8)
-    @q = Record.ransack(params[:q])
+    @q = current_user.records.ransack(params[:q])
     @search_records = @q.result(distinct: true).includes(:practices).page(params[:page]).per(8)
   end
 
@@ -53,12 +52,57 @@ before_action :authenticate_user!
   end
 
   def aggregate_result
-    @record = Record.find(params[:id])
-    gon.data = Record.where(params[:practice_time])
-    6.times do
-      # gon.data << rand(100.0)
-    end
+#@recordだが、中身がrecords（複数のレコードの集合）が入っている状態
+  @record = current_user.records.includes(:practices).group(:practice_time).select(:practice_time).sum(:practice_time)
+  # @record = current_user.records.includes(:practices).select("practice_item", "practice_time").group("practice_item").sum(:practice_time).to_a
+  logger.info "test #{@record.inspect}"
+  gon.data = @record
+
+  @label = ["3球目攻撃", "多球練習", "サーブ練習", "フットワーク","オール","台上処理"]
+  gon.label = @label
   end
+
+# hash = {
+#   "サーブ練習" => "service_practice",
+#   "フットワーク" => "footwork",
+#   "3球目攻撃" => "third_attack",
+#   "台上処理" => "receive_skill",
+#   "多球練習" => "multiball_practice",
+#   "オール" => "all_practice"
+# }
+# hash["サーブ練習"]
+# service_practice = @record.sum{:practice_item => "サーブ練習"}
+# footwork = @record.sum{:practice_item => "フットワーク"}
+# third_attack = @record.sum(:practice_item  "3球目攻撃"}
+# receive_skill = @record.sum(:practice_item => "台上処理"}
+# multiball_practice = @record.sum{:practice_item => "多球練習"}
+# all_practice = @record.sum{:practice_item => "オール"}
+
+# gon.data = ["サーブ練習" => "service_practice", "フットワーク" => "footwork", "3球目攻撃" => "third_attack", "台上処理" => "receive_skill", "多球練習" => "multiball_practice", "オール" => "all_practice"]
+
+# results = {"サーブ練習" => :service_practice}
+# results[@service_practice]
+
+
+# gon.data = [@serve,@footwork,@third_attack,@receive_on_the_table,@multiball_practice,@all_practice]
+
+    # logger.info "practices.group #{gon.data}"
+    # logger.info "practices.group #{gon.data2}"
+    # logger.info "practices.group #{gon.data.inspect}"
+    # logger.info "practices.group #{gon.data2.inspect}"
+    # logger.info "practice_time #{params[:practice_time]}"
+    # logger.info "gon.data #{gon.data.inspect}"
+    # 6.times do
+    #   gon.data3.to_a << rand(100.0)
+    # .or(practice_item: "フットワーク").or(practice_item: "3球目攻撃")or(practice_item: "台上処理")or(practice_item: "多球練習")or(practice_item: "オール")
+
+
+  # gon.data = Record.where(params[:practice_time])
+  # paramsは、V
+
+  # Parameters: {"id"=>"3"}を取得するのが、params[:id]
+  # params
+
 
   private
 

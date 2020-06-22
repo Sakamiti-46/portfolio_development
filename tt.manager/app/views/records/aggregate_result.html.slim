@@ -1,5 +1,7 @@
 = render 'records/flash_messages'
 h1 レポート
+#{@record}
+
 canvas#myPieChart
 script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"
 javascript:
@@ -7,17 +9,17 @@ javascript:
   var myPieChart = new Chart(ctx, {
     type: 'pie',
     data: {
-      labels: ["サーブ練習", "フットワーク", "3球目攻撃", "台上処理","多球練習","オール"],
+      labels: gon.label,
       datasets: [{
           backgroundColor: [
-              'rgba(255, 99, 132, 0.2)',
-              'rgba(54, 162, 235, 0.2)',
-              'rgba(255, 206, 86, 0.2)',
-              'rgba(75, 192, 192, 0.2)',
-              'rgba(75, 192, 192, 0.2)',
-              'rgba(242,68,172,0.2)'
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(242,68,172,0.2)'
           ],
-          data: gon.data
+          data: [50,222,190,30,22,120]
       }]
     },
     options: {
@@ -30,6 +32,35 @@ javascript:
 
 = link_to '一覧に戻る', root_path, class: 'btn btn-primary'
 
+
+/   var ctx = document.getElementById("myPieChart");
+/   var myPieChart = new Chart(ctx, {
+/     type: 'pie',
+/     data: {
+/       labels: ["サーブ練習", "フットワーク", "3球目攻撃", "台上処理","多球練習","オール"],
+/       datasets: [{
+/           backgroundColor: [
+/             'rgba(255, 99, 132, 0.2)',
+/             'rgba(54, 162, 235, 0.2)',
+/             'rgba(255, 206, 86, 0.2)',
+/             'rgba(75, 192, 192, 0.2)',
+/             'rgba(75, 192, 192, 0.2)',
+/             'rgba(242,68,172,0.2)'
+/           ],
+/           data: gon.data
+/       }]
+/     },
+/     options: {
+/       title: {
+/         display: true,
+/         text: '練習内容の内訳'
+/       }
+/     }
+/   });
+
+/ = link_to '一覧に戻る', root_path, class: 'btn btn-primary'
+
+/ data: [@serve,@footwork,@third_attack,20,20,20]
 / javascript:
 /   var ctx = document.getElementById("myPieChart");
 /   var myPieChart = new Chart(ctx, {
