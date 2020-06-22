@@ -83,3 +83,4 @@ production:
   database: tt_manager_production
   username: tt_manager
   password: <%= ENV['TT_MANAGER_DATABASE_PASSWORD'] %>
+  encoding: unicode
