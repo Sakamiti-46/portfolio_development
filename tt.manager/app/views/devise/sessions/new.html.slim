@@ -17,7 +17,7 @@
       = f.submit 'ログイン', class: 'btn btn-primary'
   = form_for(resource, as: resource_name, url: session_path(resource_name)) do |g|
     = g.hidden_field :email, value: 'guest@example.com'
-    = g.hidden_field :password, value: '12345678'
+    = g.hidden_field :password, value: 'password'
     .mb-3
       = g.submit 'かんたんログイン', class: 'btn btn-warning'
   = render "devise/shared/links"
