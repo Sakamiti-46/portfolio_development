@@ -1,6 +1,5 @@
 = render 'records/flash_messages'
 h1 レポート
-#{@record}
 
 canvas#myPieChart
 script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"
@@ -19,7 +18,7 @@ javascript:
             'rgba(75, 192, 192, 0.2)',
             'rgba(242,68,172,0.2)'
           ],
-          data: [50,222,190,30,22,120]
+          data:#{@record.values}
       }]
     },
     options: {
