@@ -53,10 +53,12 @@ before_action :authenticate_user!
 
   def aggregate_result
 #@recordだが、中身がrecords（複数のレコードの集合）が入っている状態
-  @record = current_user.records.includes(:practices).select("practice_item", "practice_time").group("practice_item").sum(:practice_time).to_a
-  logger.info "test #{@record}"
+  @record = current_user.records.includes(:practices).group(:practice_time).select(:practice_time).sum(:practice_time)
+  # @record = current_user.records.includes(:practices).select("practice_item", "practice_time").group("practice_item").sum(:practice_time).to_a
+  logger.info "test #{@record.inspect}"
   gon.data = @record
-  @label = ["サーブ練習", "フットワーク", "3球目攻撃", "台上処理","多球練習","オール"]
+
+  @label = ["3球目攻撃", "多球練習", "サーブ練習", "フットワーク","オール","台上処理"]
   gon.label = @label
   end
 
