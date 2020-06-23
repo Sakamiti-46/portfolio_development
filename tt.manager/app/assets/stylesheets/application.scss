@@ -1,8 +1,13 @@
 @import "bootstrap";
+@font-face {
+  font-family: 'Faster One', cursive;
+  font-family: 'Kite One', sans-serif;
+}
 
 body {
   padding-top: 0px;
   background-color: whitesmoke;
+
 }
 
 .container-login {
@@ -32,6 +37,15 @@ footer {
     font-size: 0.9rem;
     padding: 0.6rem;
     margin-bottom: 0;
+  }
+}
+
+.main-wrapper {
+  padding-top: 50px;
+  display: flex;
+  justify-content: center;
+  td {
+    margin: 20px, 40px;
   }
 }
 

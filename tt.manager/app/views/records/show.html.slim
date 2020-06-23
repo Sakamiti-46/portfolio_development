@@ -1,37 +1,8 @@
-h1 登録内容の詳細
-
-/ .nav.justify-content-end
-/   = link_to '一覧', records_path, class: 'nav-link'
-/ table.table.table-hover
-/   tbody
-/     tr
-/       th= Record.human_attribute_name(:id)
-/       td= @record.id
-/     tr
-/       th= Record.human_attribute_name(:name)
-/       td= @task.name
-/     tr
-/       th= Task.human_attribute_name(:description)
-/       td= auto_link(simple_format(h(@task.description), {}, sanitize: false, wrapper_tag: "div"))
-/     tr
-/       th= Task.human_attribute_name(:image)
-/       td= image_tag @task.image if @task.image.attached?
-/     tr
-/       th= Task.human_attribute_name(:created_at)
-/       td= @task.created_at
-/     tr
-/       th= Task.human_attribute_name(:updated_at)
-/       td= @task.updated_at
-
-
-  = link_to '編集', edit_record_path(@record), class: 'btn btn-primary mr-3'
-  = link_to '一覧に戻る', root_path, class: 'btn btn-secondary'
-  = link_to '削除する', record_path(@record), method: :delete, data: { confirm: "練習記録を削除します。よろしいですか？" }, class: 'btn btn-danger'
+= render 'form', model: @record
+= link_to '一覧に戻る', root_path, class: 'btn btn-primary'
 
 
 
-/ = render 'form', model: @record
-/ = link_to '一覧に戻る', root_path, class: 'btn btn-primary'
 
 
 / = form_for @record, url: records_path, method: :post, local:true do |f|
