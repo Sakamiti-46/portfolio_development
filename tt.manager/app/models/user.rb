@@ -7,4 +7,5 @@ class User < ApplicationRecord
   # has_many :practices, through: :records
   # has_many :tasks, through: :records
   # accepts_nested_attributes_for :records
+  
 end

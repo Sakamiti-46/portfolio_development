@@ -15,11 +15,13 @@
         = f.label :remember_me, '次回から自動的にログイン'
     .mb-3
       = f.submit 'ログイン', class: 'btn btn-primary'
-  = form_for(resource, as: resource_name, url: session_path(resource_name)) do |g|
-    = g.hidden_field :email, value: 'guest@example.com'
-    = g.hidden_field :password, value: '12345678'
-    .mb-3
-      = g.submit 'かんたんログイン', class: 'btn btn-warning'
+    .guest
+      = link_to 'ゲストユーザーでログイン', users_guest_sign_in_path, method: :post, class:"guest_btn"
+    / = form_for(resource, as: resource_name, url: session_path(resource_name)) do |g|
+    /   = g.hidden_field :email, value: 'guest@example.com'
+    /   = g.hidden_field :password, value: '12345678'
+    / .mb-3
+    /     = g.submit 'かんたんログイン', class: 'btn btn-warning'
   = render "devise/shared/links"
 
 
