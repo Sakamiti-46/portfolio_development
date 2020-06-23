@@ -1,0 +1,78 @@
+@import "bootstrap";
+@font-face {
+  font-family: 'Faster One', cursive;
+  font-family: 'Kite One', sans-serif;
+}
+
+body {
+  padding-top: 0px;
+  background-color: whitesmoke;
+
+}
+
+.container-login {
+  @extend .container-fluid;
+  max-width: 576px;
+  padding: 2rem;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: relative;
+  box-sizing: border-box;
+}
+
+footer {
+  width: 100%;
+  background-color: #343a40;
+  color: #fff;
+  text-align: center;
+  padding: 30px, 0;
+  position: absolute;
+  bottom: 0;
+
+  p {
+    font-size: 0.9rem;
+    padding: 0.6rem;
+    margin-bottom: 0;
+  }
+}
+
+.main-wrapper {
+  padding-top: 50px;
+  display: flex;
+  justify-content: center;
+  td {
+    margin: 20px, 40px;
+  }
+}
+
+// 「ログインしました」などのフラッシュ用スタイル
+
+.alert-notice {
+  @extend .alert-info;
+}
+
+.alert-alert {
+  @extend .alert-danger;
+}
+
+.form-group.form-group-flex {
+  display: flex;
+}
+
+.form-height select,.form-height input {
+  height: 29px;
+  padding: 1px;
+  box-sizing: border-box;
+  border-width: 2px;
+  border-style: inset;
+  border-color: -internal-light-dark-color(rgb(118, 118, 118), rgb(195, 195, 195));
+  border-image: initial;
+}
+.form-height input {
+  width: 70px;
+}
+

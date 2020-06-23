@@ -1,0 +1,41 @@
+doctype html
+html
+  head
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+    title TTManager
+    = csrf_meta_tags
+    = csp_meta_tag
+    meta content="width=device-width,initial-scale=1" name="viewport" /
+    = Gon::Base.render_data
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'application'
+    link href="https://fonts.googleapis.com/css2?family=Faster+One&family=Kite+One&display=swap" rel="stylesheet"
+
+  body
+    = render 'records/header'
+    = yield
+    .wrapper
+      = render 'records/footer'
+
+/ <%
+/ =begin%>
+/  <!DOCTYPE html>
+/ <html>
+/   <head>
+/     <title>TTManager</title>
+/     <%= csrf_meta_tags %>
+/     <%= csp_meta_tag %>
+/     <meta name="viewport" content="width=device-width,initial-scale=1">
+/     <%= Gon::Base.render_data %>
+/     <%= stylesheet_link_tag    'application', media: 'all'%>
+/     <%= javascript_include_tag 'application' %>
+/   </head>
+/   <body>
+/     <%= render 'records/header' %>
+/   <%= yield %>
+/   <%= render 'records/footer' %>
+/ </body>
+/ </html> 
+/ <%
+/ =end%>
+
