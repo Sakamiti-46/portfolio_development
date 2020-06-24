@@ -15,6 +15,7 @@ before_action :authenticate_user!
     output = @record.outputs.build
     practice = @record.practices.build
     task = @record.tasks.build
+    @item_array = ["サーブ練習","フットワーク", "３球目攻撃","台上処理","多球練習","オール"]
   end
 
   def create
@@ -31,6 +32,7 @@ before_action :authenticate_user!
 
   def edit
     @record = Record.find_by(id: params[:id])
+    @item_array = ["サーブ練習","フットワーク", "３球目攻撃","台上処理","多球練習","オール"]
   end
 
   def update

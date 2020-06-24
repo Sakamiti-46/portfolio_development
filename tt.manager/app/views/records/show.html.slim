@@ -1,5 +1,72 @@
-= render 'form', model: @record
+h3 練習日
+= @record.training_date
+
+h3 今日できるようになったこと・成果
+- @record.outputs.each do |output|
+  p= output.output_name
+
+h3 今日の練習内容
+- @record.practices.each do |practice|
+  p= practice.practice_item
+  p= practice.practice_time
+
+h3 今日の気付き
+= @record.learning_point
+
+h3 次回練習すること・課題
+- @record.tasks.each do |task|
+  p= task.task_name
+
+= link_to "編集する", edit_record_path(@record), class: 'btn btn-primary mr-3'
 = link_to '一覧に戻る', root_path, class: 'btn btn-primary'
+
+
+/ - @record.outputs do |output|の中身を確認するコード
+/ = @record.outputs.inspect
+
+
+
+/ = form_for @record, local:true do |f|
+
+/   h3 練習日
+/   #record
+/     = f.date_field :training_date
+
+/     h3 今日できるようになったこと・成果
+/     #outputs
+/       = f.fields_for :outputs do |output|
+/         = render 'output_fields', f: output
+/         #links
+/         = link_to_add_association '追加',f, :outputs, class: 'btn btn-primary'
+
+/     h3 今日の練習内容
+/     #practices
+/       = f.fields_for :practices do |practice_fields|
+/         = render 'practice_fields', f: practice_fields
+/       #links
+/         = link_to_add_association '追加',f, :practices, class: 'btn btn-primary'
+
+/     h3 今日の気付き
+/   = f.text_area :learning_point
+
+/   .form-group
+/     h3 次回練習すること・課題
+/     #tasks
+/       = f.fields_for :tasks do |task|
+/         = render 'task_fields', f: task
+/       #links
+/         = link_to_add_association '追加',f, :tasks, class: 'btn btn-primary'
+
+/   - if controller.action_name == "new"
+/     = f.submit "この内容で登録する",class: "btn btn-primary"
+/   - elsif controller.action_name == "edit"
+/     = f.submit "この内容で更新する",class: "btn btn-primary"
+/   - else
+/     = link_to "編集する" ,edit_record_path(@record), class: 'btn btn-primary mr-3'
+
+
+/ = render 'form', model: @record
+/ = link_to '一覧に戻る', root_path, class: 'btn btn-primary'
 
 
 
