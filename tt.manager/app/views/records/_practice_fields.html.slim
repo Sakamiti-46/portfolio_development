@@ -7,14 +7,8 @@
           th 練習時間（分）
       tbody
         tr.form-control-md.form-height
-          td= f.select :practice_item
-            option サーブ練習
-            option フットワーク
-            option ３球目攻撃
-            option 台上処理
-            option 多球練習
-            option オール
-          td= f.number_field :practice_time
+          td= f.select :practice_item, @item_array
+          td= f.number_field :practice_time,min:0
     #links
       = link_to_remove_association "削除", f, class: 'btn  btn-danger'
 
