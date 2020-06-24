@@ -1,3 +1,13 @@
+
+show.html.slim
+フォームを非表示にする
+追加・削除のボタンはなし。
+
+edit.html.slim
+すでに登録された内容をフォームで表示させる
+ボタンを押してupdateアクションを行い、index.html.slimに戻る
+
+
 【メモ】
 gem gon
 Rubyで定義した変数をJSでも使えるようにするgem
