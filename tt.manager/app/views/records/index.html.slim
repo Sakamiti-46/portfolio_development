@@ -28,7 +28,7 @@ h1 練習記録一覧
       - @search_records.each do |record|
           tr
             td= link_to record.training_date, record_path(record)
-            td= record.created_at
+            td= record.created_at.strftime("%Y-%m-%d%H:%M")
             td= record.practices.sum(:practice_time)
             td
               = link_to '編集する', edit_record_path(record), class: 'btn btn-primary mr-3'
