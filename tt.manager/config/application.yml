@@ -6,7 +6,7 @@
 # stripe_api_key: sk_test_2J0l093xOyW72XUYJHE4Dv2r
 # stripe_publishable_key: pk_test_ro9jV5SNwGb1yYlQfzG17LHK
 # メール送信サーバの設定(gmail)
-delivery_method:           smtp
+delivery_method:           :smtp
 smtp_enable_starttls_auto: true
 smtp_address:              smtp.gmail.com
 smtp_port:                 587
