@@ -1,6 +1,17 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = ENV['delivery_method'].to_sym
+  config.action_mailer.default_url_options = { host: 'quiet-escarpment-59252.herokuapp.com'}
+  config.action_mailer.smtp_settings = {
+    enable_starttls_auto: ENV['smtp_enable_starttls_auto'],
+    address: ENV['smtp_address'],
+    port: ENV['smtp_port'],
+    domain: ENV['smtp_domain'],
+    authentication: ENV['smtp_authentication'],
+    user_name: ENV['smtp_user_name'],
+    password: ENV['smtp_password']
+  }
   # Code is not reloaded between requests.
   config.cache_classes = true
 
