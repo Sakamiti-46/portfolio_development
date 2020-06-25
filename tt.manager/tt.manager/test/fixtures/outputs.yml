@@ -1,9 +1,0 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  output_name: MyText
-  record: one
-
-two:
-  output_name: MyText
-  record: two
