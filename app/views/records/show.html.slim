@@ -1,20 +1,20 @@
 
-.form-group
-h3 練習日
-span.border-bottom
+
+.box26
+  span.box-title 練習日
   = @record.training_date
 
-.form-group
-h3 今日できるようになったこと・成果
-.border-wrap
+
+.box26
+  span.box-title 今日できるようになったこと・成果
   - @record.outputs.each do |output|
     p= output.output_name
 
-.main-wrapper
-  table.table-hover.table-respnsive.text-nowrap
-h3 今日の練習内容
+table.table-hover.table-respnsive.text-nowrap
+
+p.box27 今日の練習内容
 .row
-  .col-md-12
+  .col-md-12.box28
     table.table-bordered.text-center
       thead.thead-light
         tr
@@ -26,15 +26,15 @@ h3 今日の練習内容
             td.align-middle= practice.practice_item
             td.align-middle= practice.practice_time
 
-.form-group
-h3 今日の気付き
-.form-group.border-wrap
+.box26
+  span.box-title 今日の気付き
   = @record.learning_point
 
-h3 次回練習すること・課題
-.form-group.border-wrap
+.box26
+  span.box-title 次回練習すること・課題
   - @record.tasks.each do |task|
     p= task.task_name
+
 
 .d-flex
   .col-4.text-align: center

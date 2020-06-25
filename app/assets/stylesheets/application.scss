@@ -2,7 +2,7 @@
 
 body {
   padding-top: 0px;
-  background-color: whitesmoke;
+  background-color:white;
   font-family: "Helvetica Neue",
     Arial,
     "Hiragino Kaku Gothic ProN",
@@ -11,11 +11,11 @@ body {
     sans-serif;
 }
 
-
 .container-login {
   @extend .container-fluid;
   max-width: 576px;
   padding: 2rem;
+
 }
 
 .wrapper {
@@ -42,14 +42,6 @@ footer {
   }
 }
 
-.main-wrapper {
-  padding-top: 20px;
-  display: flex;
-  justify-content: center;
-  td {
-    margin: 50px, 40px;
-  }
-}
 
 .border-wrap  {
   padding: 0.5em 1em;
@@ -62,10 +54,49 @@ footer {
   border-radius: 5px;/*角の丸み*/
 }
 
-.form-group {
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;;
+
+.box26 {
+  position: relative;
+  margin: 2em 0;
+  padding: 0.5em 1em;
+  border: solid 3px #95ccff;
+  border-radius: 8px;
+  max-width: 400px;
+
+  .box-title {
+    position: absolute;
+    display: inline-block;
+    top: -13px;
+    left: 10px;
+    padding: 0 9px;
+    line-height: 1;
+    font-size: 16px;
+    background: #FFF;
+    color: #95ccff;
+    font-weight: bold;
+    max-width: 300px;
+  }
+
+  p {
+    margin: 0;
+    padding: 0;
+  }
 }
 
+p.box27 {
+  color: #95ccff;
+  font-weight: bold;
+}
+
+.box28 {
+  border-color: #95ccff ;
+}
+
+p  {
+  color: black;
+  margin: 0;
+  padding: 0;
+}
 
 // 「ログインしました」などのフラッシュ用スタイル
 
