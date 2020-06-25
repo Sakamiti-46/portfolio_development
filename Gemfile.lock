@@ -92,6 +92,8 @@ GEM
     erubi (1.9.0)
     execjs (2.7.0)
     ffi (1.13.0)
+    figaro (1.2.0)
+      thor (>= 0.14.0, < 2)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     gon (6.3.2)
@@ -288,6 +290,7 @@ DEPENDENCIES
   devise-bootstrap-views
   devise-i18n
   devise-i18n-views
+  figaro
   gon
   html2slim
   jbuilder (~> 2.7)
