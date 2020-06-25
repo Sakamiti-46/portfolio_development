@@ -1,0 +1,45 @@
+
+.form-group
+h3 練習日
+span.border-bottom
+  = @record.training_date
+
+.form-group
+h3 今日できるようになったこと・成果
+.border-wrap
+  - @record.outputs.each do |output|
+    p= output.output_name
+
+.main-wrapper
+  table.table-hover.table-respnsive.text-nowrap
+h3 今日の練習内容
+.row
+  .col-md-12
+    table.table-bordered.text-center
+      thead.thead-light
+        tr
+          th 練習日
+          th 練習時間（分）
+      tbody
+        - @record.practices.each do |practice|
+          tr
+            td.align-middle= practice.practice_item
+            td.align-middle= practice.practice_time
+
+.form-group
+h3 今日の気付き
+.form-group.border-wrap
+  = @record.learning_point
+
+h3 次回練習すること・課題
+.form-group.border-wrap
+  - @record.tasks.each do |task|
+    p= task.task_name
+
+.d-flex
+  .col-4.text-align: center
+    = link_to "練習記録を編集する", edit_record_path(@record), class: 'btn btn-primary'
+  .col-4.text-align: center
+    = link_to '練習記録一覧に戻る', root_path, class: 'btn btn-primary'
+  .col-4.text-align: center
+    = link_to 'レポートを見る', aggregate_result_record_path(current_user.id), class: 'btn btn-primary'
