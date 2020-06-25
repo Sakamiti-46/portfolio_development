@@ -1,9 +1,10 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.delivery_method = ENV['delivery_method'].to_sym
+  config.action_mailer.delivery_method = ENV['delivery_method']
   config.action_mailer.default_url_options = { host: 'quiet-escarpment-59252.herokuapp.com'}
   config.action_mailer.smtp_settings = {
+    delivery_method: ENV['delivery_method'],
     enable_starttls_auto: ENV['smtp_enable_starttls_auto'],
     address: ENV['smtp_address'],
     port: ENV['smtp_port'],
