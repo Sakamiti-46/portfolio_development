@@ -12,6 +12,11 @@ Rails.application.configure do
     user_name: ENV['smtp_user_name'],
     password: ENV['smtp_password']
   }
+
+  # user_name: ENV['smtp_user_name'],
+  # password: ENV['smtp_password']
+  # user_name: ENV['SENDGRID_USERNAME'],
+  # password: ENV['SENDGRID_PASSWORD']
   # Code is not reloaded between requests.
   config.cache_classes = true
 
