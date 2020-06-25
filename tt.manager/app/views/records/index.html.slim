@@ -8,15 +8,13 @@ h1 練習記録一覧
       = f.submit "検索"
 
 .d-flex
-  .col-4.text-align: center
+  .col-6.text-align: center
     = link_to '新規登録', new_record_path, class: 'btn btn-primary'
-  .col-4.text-align: center
-    = link_to 'リマインダー設定', new_record_path, class: 'btn btn-primary'
-  .col-4.text-align: center
+  .col-6.text-align: center
     = link_to 'レポートを見る', aggregate_result_record_path(current_user.id), class: 'btn btn-primary'
 
 .main-wrapper
-  table.table-hover.table-respnsive.text-nowrap
+  table.table-hover.table-respnsive.text-nowrap.text-center
     thead
       tr
         th= sort_link(@q, :training_date, '練習日')
@@ -35,6 +33,3 @@ h1 練習記録一覧
               = link_to '削除する', record_path(record), method: :delete, data: { confirm: "練習記録を削除します。よろしいですか？" }, class: 'btn btn-danger'
 
 = paginate @search_records
-/ = link_to_next_page @records, 'Next Page'
-/ = path_to_next_page @records
-/ = path_to_prev_page @records

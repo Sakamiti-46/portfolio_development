@@ -1,14 +1,16 @@
 @import "bootstrap";
-@font-face {
-  font-family: 'Faster One', cursive;
-  font-family: 'Kite One', sans-serif;
-}
 
 body {
   padding-top: 0px;
   background-color: whitesmoke;
-
+  font-family: "Helvetica Neue",
+    Arial,
+    "Hiragino Kaku Gothic ProN",
+    "Hiragino Sans",
+    Meiryo,
+    sans-serif;
 }
+
 
 .container-login {
   @extend .container-fluid;
@@ -19,7 +21,7 @@ body {
 .wrapper {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: 80vh;
   position: relative;
   box-sizing: border-box;
 }
@@ -34,20 +36,36 @@ footer {
   bottom: 0;
 
   p {
-    font-size: 0.9rem;
-    padding: 0.6rem;
+    font-size: 1rem;
+    padding: 1rem;
     margin-bottom: 0;
   }
 }
 
 .main-wrapper {
-  padding-top: 50px;
+  padding-top: 20px;
   display: flex;
   justify-content: center;
   td {
-    margin: 20px, 40px;
+    margin: 50px, 40px;
   }
 }
+
+.border-wrap  {
+  padding: 0.5em 1em;
+  margin: 1em 0;
+  font-weight: bold;
+  max-width: 300px;
+  color: #242424;/*文字色*/
+  background: #FFF;
+  border: solid 2px #000000;/*線*/
+  border-radius: 5px;/*角の丸み*/
+}
+
+.form-group {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;;
+}
+
 
 // 「ログインしました」などのフラッシュ用スタイル
 

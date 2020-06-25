@@ -29,7 +29,11 @@ javascript:
     }
   });
 
-= link_to '一覧に戻る', root_path, class: 'btn btn-primary'
+.d-flex
+  .col-6.text-align: center
+    = link_to '練習記録を登録する', new_record_path, class: 'btn btn-primary'
+  .col-6.text-align: center
+    = link_to '練習記録一覧に戻る', root_path, class: 'btn btn-primary'
 
 
 /   var ctx = document.getElementById("myPieChart");

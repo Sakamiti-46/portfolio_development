@@ -1,7 +1,6 @@
 h1 登録内容の編集
 = render 'form', model: @record
-= link_to '一覧に戻る', root_path, class: 'btn btn-primary'
-
+= link_to '練習記録一覧に戻る', root_path, class: 'btn btn-primary'
 
 
 / = form_for @record, url: records_path, method: :post, local:true do |f|
