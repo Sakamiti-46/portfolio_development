@@ -1,12 +1,12 @@
 = form_for @record, local:true do |f|
 
-  h3 練習日
   .form-group
-  #record
-    = f.date_field :training_date
+    p.font-color 練習日
+    #record
+      = f.date_field :training_date, class:'border-wrap'
 
   .form-group
-    h3 今日できるようになったこと・成果
+    p.font-color 今日できるようになったこと・成果
     #outputs
       = f.fields_for :outputs do |output|
         = render 'output_fields', f: output
@@ -14,7 +14,7 @@
         = link_to_add_association '追加',f, :outputs, class: 'btn btn-primary'
 
   .form-group
-    h3 今日の練習内容
+    p.font-color 今日の練習内容
     #practices
       = f.fields_for :practices do |practice_fields|
         = render 'practice_fields', f: practice_fields
@@ -22,11 +22,12 @@
         = link_to_add_association '追加',f, :practices, class: 'btn btn-primary'
 
   .form-group
-    h3 今日の気付き
-  = f.text_area :learning_point, class: 'border-wrap'
+    p.font-color 今日の気付き
+    #record
+      = f.text_area :learning_point, class: 'border-wrap'
 
   .form-group
-    h3 次回練習すること・課題
+    p.font-color 次回練習すること・課題
     #tasks
       = f.fields_for :tasks do |task|
         = render 'task_fields', f: task

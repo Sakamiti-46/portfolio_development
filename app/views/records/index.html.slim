@@ -4,7 +4,7 @@ h1 練習記録一覧
 .container
   .form-group
     = search_form_for @q do |f|
-      = f.date_field :training_date_eq
+      = f.date_field :training_date_eq,class: 'expand_field'
       = f.submit "検索"
 
 .d-flex
@@ -13,15 +13,15 @@ h1 練習記録一覧
   .col-6.text-align: center
     = link_to 'レポートを見る', aggregate_result_record_path(current_user.id), class: 'btn btn-primary'
 
-.main-wrapper
+.container
   table.table-hover.table-respnsive.text-nowrap.text-center
     thead
       tr
-        th= sort_link(@q, :training_date, '練習日')
-        th= sort_link(@q, :created_at, '登録日時')
-        th 総練習時間
-        th
-        th
+        th scppe="col"= sort_link(@q, :training_date, '練習日')
+        th scppe="col"= sort_link(@q, :created_at, '登録日時')
+        th scppe="col" 総練習時間
+        th scppe="col"
+        th scppe="col"
     tbody
       - @search_records.each do |record|
           tr

@@ -1,40 +1,39 @@
+h1 練習記録の詳細
 
-
-.box26
-  span.box-title 練習日
+.contents
+  span.contents-title 練習日
   = @record.training_date
 
 
-.box26
-  span.box-title 今日できるようになったこと・成果
+.contents
+  span.contents-title 今日できるようになったこと・成果
   - @record.outputs.each do |output|
     p= output.output_name
 
-table.table-hover.table-respnsive.text-nowrap
-
-p.box27 今日の練習内容
-.row
-  .col-md-12.box28
-    table.table-bordered.text-center
-      thead.thead-light
-        tr
-          th 練習日
-          th 練習時間（分）
-      tbody
-        - @record.practices.each do |practice|
+.table-wrapper
+  table.table-hover.table-respnsive.text-nowrap
+  p.contents-title 今日の練習内容
+  .row
+    .col-md-12.border-color
+      table.table-bordered.text-center
+        thead.thead-light
           tr
-            td.align-middle= practice.practice_item
-            td.align-middle= practice.practice_time
+            th 練習日
+            th 練習時間（分）
+        tbody
+          - @record.practices.each do |practice|
+            tr
+              td.align-middle= practice.practice_item
+              td.align-middle= practice.practice_time
 
-.box26
-  span.box-title 今日の気付き
+.contents
+  span.contents-title 今日の気付き
   = @record.learning_point
 
-.box26
-  span.box-title 次回練習すること・課題
+.contents
+  span.contents-title 次回練習すること・課題
   - @record.tasks.each do |task|
     p= task.task_name
-
 
 .d-flex
   .col-4.text-align: center
