@@ -11,7 +11,7 @@ smtp_enable_starttls_auto: true
 smtp_address:              smtp.gmail.com
 smtp_port:                 587
 smtp_domain:               gmail.com
-smtp_authentication:       plain
+smtp_authentication:       :plain
 smtp_user_name:            kim.kyp.7418@gmail.com
 smtp_password:             noqjkulynavlmvcu
 
