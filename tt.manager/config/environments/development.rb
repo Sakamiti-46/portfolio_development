@@ -32,7 +32,7 @@ Rails.application.configure do
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.delivery_method = ENV['delivery_method'].to_sym
+  config.action_mailer.delivery_method = ENV['delivery_method'].to_s
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   config.action_mailer.smtp_settings = {
     enable_starttls_auto: ENV['smtp_enable_starttls_auto'],
