@@ -3,9 +3,9 @@
 # TTManager〜成長を加速せよ〜
 卓球選手が、日々の練習内容を記録することで、練習内容の振り返りやメニューの組み立て、課題設定をスムーズに行うことができるWebアプリケーションです。
 
-<img width="400" alt="スクリーンショット 2020-06-26 15 14 12" src="https://user-images.githubusercontent.com/63082672/85827613-908dba80-b7c1-11ea-8179-f698ac536967.png"><img width="400" alt="スクリーンショット 2020-06-26 15 25 46" src="https://user-images.githubusercontent.com/63082672/85827545-7522af80-b7c1-11ea-96fa-76338d1b8394.png">
+<img width="400" height="400" alt="スクリーンショット 2020-06-26 15 14 12" src="https://user-images.githubusercontent.com/63082672/85827613-908dba80-b7c1-11ea-8179-f698ac536967.png"><img width="400" height="400" alt="スクリーンショット 2020-06-26 15 25 46" src="https://user-images.githubusercontent.com/63082672/85827545-7522af80-b7c1-11ea-96fa-76338d1b8394.png">
 
-<img width="400" alt="test" src="https://user-images.githubusercontent.com/63082672/85915879-4d494f80-b886-11ea-8095-d70614c0d699.png"><img width="400" alt="レポート" src="https://user-images.githubusercontent.com/63082672/85916304-7a97fc80-b88a-11ea-809b-9c37bc8fd975.png">
+<img width="400" height="400" alt="test" src="https://user-images.githubusercontent.com/63082672/85915879-4d494f80-b886-11ea-8095-d70614c0d699.png"><img width="400" height="400" alt="レポート" src="https://user-images.githubusercontent.com/63082672/85916304-7a97fc80-b88a-11ea-809b-9c37bc8fd975.png">
 
 # URL
 https://quiet-escarpment-59252.herokuapp.com/
@@ -43,6 +43,6 @@ https://quiet-escarpment-59252.herokuapp.com/
 - アプリが開いていない状況でもユーザーに対して自動でメール通知されるよう、Railsの機能とHerokuの機能を組み合わせたこと
 
 
-# 開発において参考にしたネイティブアプリケーションのURL
+# 開発において参考にしたアプリ
 
 https://apps.apple.com/jp/app/%E5%8D%93%E7%90%83%E6%89%8B%E5%B8%B3/id952671702
