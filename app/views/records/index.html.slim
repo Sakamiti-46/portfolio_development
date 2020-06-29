@@ -1,11 +1,10 @@
 = render 'records/flash_messages'
 
 h1 練習記録一覧
-.container
-  .form-group
-    = search_form_for @q do |f|
-      = f.date_field :training_date_eq,class: 'expand_field'
-      = f.submit "検索"
+.form-group
+  = search_form_for @q do |f|
+    = f.date_field :training_date_eq,class: 'expand_field'
+    = f.submit "検索"
 
 .d-flex
   .col-6.text-align: center
