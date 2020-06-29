@@ -1,10 +1,8 @@
 - provide :title, 'ユーザー編集'
-
 h2 ユーザー編集
 = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
   = render "devise/shared/notice_alert"
   = render "devise/shared/error_messages", resource: resource
-
   .field
     = f.label :email, 'メールアドレス'
     = f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control'
@@ -17,12 +15,8 @@ h2 ユーザー編集
     = f.password_field :current_password, autocomplete: "current-password", class: 'form-control'
   br
   .field
-    = f.label :password, '新しいパスワード（8文字以上）'
+    = f.label :password, '新しいパスワード（6文字以上）'
     = f.password_field :password, autocomplete: "新しいパスワード", class: 'form-control'
-    - if @minimum_password_length
-      em
-        = @minimum_password_length
-        | characters minimum
   br
   .field
     = f.label :password_confirmation
@@ -31,7 +25,7 @@ h2 ユーザー編集
   .actions
     = f.submit "パスワードを更新する",class: 'btn btn-secondary'
   br
-h3 アカウントを削除する
+h3 アカウントを削除し、退会する
 p
-  | お気に召しませんでしたか？ #{button_to "アカウントを削除する", registration_path(resource_name), data: { confirm: "本当に削除してもよろしいですか?" }, method: :delete,class: 'btn btn-danger'}
-= link_to "練習記録一覧に戻る", :back, class: 'btn btn-primary'
+  | 退会しますか？ #{button_to "アカウントを削除する", registration_path(resource_name), data: { confirm: "本当に削除してもよろしいですか?" }, method: :delete,class: 'btn btn-danger'}
+= link_to "練習記録一覧に戻る", records, class: 'btn btn-primary'
