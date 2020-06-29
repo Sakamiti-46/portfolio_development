@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_25_064157) do
+ActiveRecord::Schema.define(version: 2020_06_29_125236) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "outputs", force: :cascade do |t|
-    t.text "output_name"
+    t.text "output_name", null: false
     t.bigint "record_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -24,8 +24,8 @@ ActiveRecord::Schema.define(version: 2020_05_25_064157) do
   end
 
   create_table "practices", force: :cascade do |t|
-    t.string "practice_item"
-    t.integer "practice_time"
+    t.string "practice_item", null: false
+    t.integer "practice_time", null: false
     t.bigint "record_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -34,14 +34,14 @@ ActiveRecord::Schema.define(version: 2020_05_25_064157) do
 
   create_table "records", force: :cascade do |t|
     t.string "user_id"
-    t.text "learning_point"
-    t.date "training_date"
+    t.text "learning_point", null: false
+    t.date "training_date", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "tasks", force: :cascade do |t|
-    t.text "task_name"
+    t.text "task_name", null: false
     t.bigint "record_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
