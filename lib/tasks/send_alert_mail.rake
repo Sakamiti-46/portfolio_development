@@ -1,5 +1,5 @@
 namespace :send_alert_mail do
-  desc "登録アラートメールの送信"
+  desc "練習記録のリマインドメールの送信"
   task main: :environment do
     # puts "Hello World"
 

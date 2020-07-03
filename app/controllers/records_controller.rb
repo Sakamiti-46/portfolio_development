@@ -54,10 +54,9 @@ before_action :authenticate_user!
   end
 
   def aggregate_result
-  @label = ["3球目攻撃", "多球練習", "サーブ練習", "フットワーク","オール","台上処理"]
-  gon.label = @label
   @record = current_user.records.includes(:practices).select(:practice_time).group(:practice_item).sum(:practice_time)
   logger.info "test #{@record.inspect}"
+  gon.label = @record.keys
   gon.data = @record.values
   end
 
