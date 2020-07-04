@@ -16,6 +16,11 @@ before_action :authenticate_user!
     practice = @record.practices.build
     task = @record.tasks.build
     @item_array = ["サーブ練習","フットワーク", "３球目攻撃","台上処理","多球練習","オール"]
+=begin
+    @item_array内の文字列と値について、データベースには
+    正しく格納されているが、Controllerで定義した順番に
+    登録されないため、現在原因を調査中である。
+=end
   end
 
   def create
@@ -49,7 +54,6 @@ before_action :authenticate_user!
   def destroy
     record = Record.find_by(id:params[:id])
     record.destroy
-
     redirect_to root_path, notice: "練習記録を削除しました。"
   end
 
@@ -58,9 +62,18 @@ before_action :authenticate_user!
   logger.info "test #{@record.inspect}"
   gon.label = @record.keys
   gon.data = @record.values
+=begin
+    ①ログインユーザーの親関係にあるRecordテーブルと、
+    子関係にあるPracticeテーブルの全てのデータを取得する。
+    ②取得したデータから、Practiceテーブルのpractice_timeカラムにある
+    データを選択し、practice_itemごとにデータを分類し、
+    practice_timeカラムの合計値を計算する。
+    ③その合計値を、@recordオブジェクトとして表示する。
+=end
   end
 
-  private
+
+private
 
   def set_user
     @user = current_user || User.new
@@ -69,4 +82,8 @@ before_action :authenticate_user!
   def record_params
     params.require(:record).permit(:record_id, :training_date, :learning_point, outputs_attributes:[:output_name, :id, :_destroy], practices_attributes:[:practice_item, :practice_time, :id, :_destroy], tasks_attributes:[:task_name, :id, :_destroy]).merge(user_id: current_user.id)
   end
+=begin
+  Strong_Parameterを採用し、不正なデータが格納されないよう、
+  バリデーションをかけた。
+=end
 end
