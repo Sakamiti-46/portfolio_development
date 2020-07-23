@@ -8,7 +8,7 @@
 <img width="400" height="400" alt="test" src="https://user-images.githubusercontent.com/63082672/85915879-4d494f80-b886-11ea-8095-d70614c0d699.png"><img width="400" height="400" alt="レポート" src="https://user-images.githubusercontent.com/63082672/85916304-7a97fc80-b88a-11ea-809b-9c37bc8fd975.png">
 
 # URL
-https://quiet-escarpment-59252.herokuapp.com/
+https://vast-anchorage-69571.herokuapp.com
 
 # 制作の背景
 私は、中学1年生から大学1年生まで7年間卓球を続けておりました。高校時代、私よりも戦績のある強豪校で練習している友人が、練習内容を記録して振り返りと課題設定、練習メニューの組み立てを管理する、手書きの「卓球ノート」に取り組んでいるという話を聞きました。
