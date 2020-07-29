@@ -16,15 +16,11 @@ before_action :authenticate_user!
     practice = @record.practices.build
     task = @record.tasks.build
     @item_array = ["サーブ練習","フットワーク", "３球目攻撃","台上処理","多球練習","オール"]
-=begin
-    @item_array内の文字列と値について、データベースには
-    正しく格納されているが、Controllerで定義した順番に
-    登録されないため、現在原因を調査中である。
-=end
   end
 
   def create
     @record = Record.new(record_params)
+    @item_array = ["サーブ練習","フットワーク", "３球目攻撃","台上処理","多球練習","オール"]
     logger.info "###### #{@record.inspect}"
     if @record.save
       flash[:success] = "練習内容の登録が完了しました。"
