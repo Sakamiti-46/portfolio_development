@@ -3,7 +3,10 @@ before_action :authenticate_user!
 
   def index
     @q = current_user.records.ransack(params[:q])
-    @search_records = @q.result(distinct: true).includes(:practices).page(params[:page]).per(8)
+    @search_records = @q
+    .result(distinct: true)
+    .includes(:practices)
+    .page(params[:page]).per(8)
   end
 
   def show
@@ -54,21 +57,29 @@ before_action :authenticate_user!
   end
 
   def aggregate_result
-  @record = current_user.records.includes(:practices).select(:practice_time).group(:practice_item).sum(:practice_time)
-  logger.info "test #{@record.inspect}"
-  gon.label = @record.keys
-  gon.data = @record.values
-=begin
-    ①ログインユーザーの親関係にあるRecordテーブルと、
-    子関係にあるPracticeテーブルの全てのデータを取得する。
-    ②取得したデータから、Practiceテーブルのpractice_timeカラムにある
-    データを選択し、practice_itemごとにデータを分類し、
-    practice_timeカラムの合計値を計算する。
-    ③その合計値を、@recordオブジェクトとして表示する。
-=end
+    # 1. ログインユーザーの親関係にあるRecordテーブルと、
+    #   子関係にあるPracticeテーブルの全てのデータを取得する。
+    # 2. 取得したデータから、Practiceテーブルのpractice_timeカラムにある
+    #   データを選択し、practice_itemごとにデータを分類し、
+    #   practice_timeカラムの合計値を計算する。
+    # 3. その合計値を、@recordオブジェクトとして表示する。
+
+    # item_order の順序を参考に Hash を再構築し、その後ひとつの Hash として値をまとめる
+    item_order = %w[サーブ練習 フットワーク  ３球目攻撃 台上処理 多球練習 オール]
+    @record =
+      current_user.records
+                  .includes(:practices)
+                  .select(:practice_time)
+                  .group(:practice_item)
+                  .sum(:practice_time)
+                  .then { |hash| item_order.map { |key| {key => hash[key]} } }
+                  .reduce { |hash, key_value| hash.update(key_value) }
+
+    logger.info "test #{@record.inspect}"
+
+    gon.label = @record.keys
+    gon.data = @record.values
   end
-
-
 private
 
   def set_user
@@ -76,10 +87,27 @@ private
   end
 
   def record_params
-    params.require(:record).permit(:record_id, :training_date, :learning_point, outputs_attributes:[:output_name, :id, :_destroy], practices_attributes:[:practice_item, :practice_time, :id, :_destroy], tasks_attributes:[:task_name, :id, :_destroy]).merge(user_id: current_user.id)
+    params.require(:record)
+    .permit(
+      :record_id,
+      :training_date,
+      :learning_point,
+      outputs_attributes:[
+        :output_name,
+        :id,
+        :_destroy],
+      practices_attributes:[
+        :practice_item,
+        :practice_time,
+        :id,
+        :_destroy],
+      tasks_attributes:[
+        :task_name,
+        :id,
+        :_destroy])
+    .merge(user_id: current_user.id)
   end
 =begin
-  Strong_Parameterを採用し、不正なデータが格納されないよう、
-  バリデーションをかけた。
+  Strong_Parameterを採用し、不正なデータが格納されないよう、バリデーションをかけた。
 =end
 end
