@@ -26,7 +26,6 @@ https://vast-anchorage-69571.herokuapp.com
 - gem ransackを用いた検索機能
 - gem kaminariを用いたページネーション機能
 - chart-js並びに gem cocoonを用いた、データベースに格納された値を円グラフに表示させる機能
-- gem figaro、ActionMailer、HerokuSchedulerを用いたリマインダー機能
 
 # 使用技術
 - フロントエンド：JavaScript（ES6）、jQuery3、Bootstrap4、Slim
